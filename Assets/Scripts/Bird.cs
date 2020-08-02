@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Bird : MonoBehaviour
 {
@@ -9,8 +10,10 @@ public class Bird : MonoBehaviour
     [SerializeField] private float upForce = 100;
     [SerializeField] private bool isDead;
     [SerializeField] private int score;
+    [SerializeField] private Text scoreText;
     [SerializeField] private UnityEvent OnJump, OnDead;
     [SerializeField] private UnityEvent OnAddPoint;
+    
     private Rigidbody2D rigidbody2d;
     private Animator animator;
 
@@ -64,6 +67,7 @@ public class Bird : MonoBehaviour
     public void AddScore(int value)
     {
         score += value;
+        scoreText.text = score.ToString();
         if (OnAddPoint != null) {
             OnAddPoint.Invoke();
         }
