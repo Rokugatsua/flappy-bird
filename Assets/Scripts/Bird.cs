@@ -8,8 +8,8 @@ public class Bird : MonoBehaviour
     // Global Variables
     [SerializeField] private float upForce = 100;
     [SerializeField] private bool isDead;
-    [SerializeField] private UnityEvent OnJump, OnDead;
     [SerializeField] private int score;
+    [SerializeField] private UnityEvent OnJump, OnDead;
     [SerializeField] private UnityEvent OnAddPoint;
     private Rigidbody2D rigidbody2d;
     private Animator animator;

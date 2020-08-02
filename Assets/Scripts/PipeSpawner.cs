@@ -7,6 +7,7 @@ public class PipeSpawner : MonoBehaviour
     // Global Variable
     [SerializeField] private Bird bird;
     [SerializeField] private Pipe pipeUp, pipeDown;
+    [SerializeField] private Point point;
     [SerializeField] private float spawnInterval = 1;
     [SerializeField] private float holeSize = 1f;
     [SerializeField] private float maxMinOffset = 1;
@@ -41,6 +42,10 @@ public class PipeSpawner : MonoBehaviour
         Pipe newPipeDown = Instantiate(pipeUp, transform.position, Quaternion.identity);
         newPipeDown.gameObject.SetActive(true);
 
+        Point newPoint = Instantiate(point, transform.position, Quaternion.identity);
+        newPoint.gameObject.SetActive(true);
+        newPoint.SetSize(holeSize);
+
         // add hole
         newPipeUp.transform.position += Vector3.up * (holeSize / 2);
         newPipeDown.transform.position += Vector3.down * (holeSize / 2);
@@ -49,6 +54,9 @@ public class PipeSpawner : MonoBehaviour
         float y = maxMinOffset * Mathf.Sin(Time.time);
         newPipeUp.transform.position += Vector3.up * y;
         newPipeDown.transform.position += Vector3.up * y;
+
+        // point
+        newPoint.transform.position += Vector3.up * y;
         
     }
 
