@@ -10,10 +10,13 @@ public class Bird : MonoBehaviour
     [SerializeField] private bool isDead;
     [SerializeField] private UnityEvent OnJump, OnDead;
     private Rigidbody2D rigidbody2d;
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody2d = GetComponent<Rigidbody2D>();        
+        rigidbody2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();  
     }
 
     // Update is called once per frame
@@ -49,5 +52,10 @@ public class Bird : MonoBehaviour
         if (OnJump != null) {
             OnJump.Invoke();
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        animator.enabled = false;
     }
 }
