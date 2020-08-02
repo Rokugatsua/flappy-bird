@@ -9,7 +9,9 @@ public class PipeSpawner : MonoBehaviour
     [SerializeField] private Pipe pipeUp, pipeDown;
     [SerializeField] private Point point;
     [SerializeField] private float spawnInterval = 1;
+    [SerializeField] private bool randomSpawnInterval = false;
     [SerializeField] private float holeSize = 1f;
+    [SerializeField] private bool randomHoleSize = false;
     [SerializeField] private float maxMinOffset = 1;
 
     private Coroutine CR_Spawn;
@@ -36,6 +38,10 @@ public class PipeSpawner : MonoBehaviour
 
     void SpawnPipe()
     {
+        if (randomHoleSize) {
+            float number = Random.Range(0.8f, 1.3f);
+            holeSize = number;
+        }
         Pipe newPipeUp = Instantiate(pipeUp, transform.position, Quaternion.Euler(0,0,180));
         newPipeUp.gameObject.SetActive(true);
 
@@ -68,6 +74,11 @@ public class PipeSpawner : MonoBehaviour
                 StopSpawn();
             }
             SpawnPipe();
+
+            if (randomSpawnInterval) {
+                float numInterval = Random.Range(1f,3f);
+                spawnInterval = numInterval;
+            }
 
             yield return new WaitForSeconds(spawnInterval);
         }
