@@ -9,6 +9,8 @@ public class Bird : MonoBehaviour
     [SerializeField] private float upForce = 100;
     [SerializeField] private bool isDead;
     [SerializeField] private UnityEvent OnJump, OnDead;
+    [SerializeField] private int score;
+    [SerializeField] private UnityEvent OnAddPoint;
     private Rigidbody2D rigidbody2d;
     private Animator animator;
 
@@ -57,5 +59,13 @@ public class Bird : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         animator.enabled = false;
+    }
+    
+    public void AddScore(int value)
+    {
+        score += value;
+        if (OnAddPoint != null) {
+            OnAddPoint.Invoke();
+        }
     }
 }
