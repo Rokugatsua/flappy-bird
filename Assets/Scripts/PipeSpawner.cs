@@ -8,6 +8,7 @@ public class PipeSpawner : MonoBehaviour
     [SerializeField] private Bird bird;
     [SerializeField] private Pipe pipeUp, pipeDown;
     [SerializeField] private float spawnInterval = 1;
+    [SerializeField] private float holeSize = 1f;
 
     private Coroutine CR_Spawn;
     // Start is called before the first frame update
@@ -38,6 +39,10 @@ public class PipeSpawner : MonoBehaviour
 
         Pipe newPipeDown = Instantiate(pipeUp, transform.position, Quaternion.identity);
         newPipeDown.gameObject.SetActive(true);
+
+        // add hole
+        newPipeUp.transform.position += Vector3.up * (holeSize / 2);
+        newPipeDown.transform.position += Vector3.down * (holeSize / 2);
 
     }
 
