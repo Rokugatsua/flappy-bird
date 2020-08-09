@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class Bird : MonoBehaviour
 {
     // Global Variables
+    [SerializeField] private Bullet bullet;
     [SerializeField] private float upForce = 100;
     [SerializeField] private bool isDead;
     [SerializeField] private int score;
     [SerializeField] private Text scoreText;
     [SerializeField] private UnityEvent OnJump, OnDead;
     [SerializeField] private UnityEvent OnAddPoint;
+    [SerializeField] private UnityEvent OnAtack;
     
     private Rigidbody2D rigidbody2d;
     private Animator animator;
@@ -29,6 +31,9 @@ public class Bird : MonoBehaviour
     {
         if (!isDead && Input.GetMouseButtonDown(0)) {
             Jump();
+        }
+        if (!isDead && Input.GetMouseButtonDown(1)) {
+            Attack();
         }
         
     }
@@ -71,5 +76,13 @@ public class Bird : MonoBehaviour
         if (OnAddPoint != null) {
             OnAddPoint.Invoke();
         }
+    }
+
+    private void Attack(){
+        
+        if (OnAtack != null) {
+            OnAtack.Invoke();
+        }
+        bullet.dump(bullet);
     }
 }
