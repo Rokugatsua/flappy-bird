@@ -21,7 +21,10 @@
 
 # Visual Studio cache directory
 .vs/
+<<<<<<< HEAD
 .vscode
+=======
+>>>>>>> 926a614d69ae261a77679cd458b339ee3107a7dc
 
 # Gradle cache directory
 .gradle/
